@@ -44,7 +44,7 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased bg-parchment text-espresso">
         <Navbar />
-        <main>{children}</main>
+        <main className="overflow-x-clip">{children}</main>
         <Footer />
       </body>
     </html>
