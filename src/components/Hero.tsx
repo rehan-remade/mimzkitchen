@@ -63,12 +63,12 @@ export default function Hero() {
 
   return (
     <section className="pt-20 md:pt-24">
-      {/* Hero container — editorial height, not full-screen */}
-      <div className="relative h-[60vh] md:h-[75vh] flex flex-col md:flex-row">
+      {/* Hero container — auto on mobile, editorial 75vh on desktop */}
+      <div className="relative md:h-[75vh] flex flex-col md:flex-row">
         {/* ─── LEFT COLUMN — Brand text panel ─── */}
-        <div className="order-2 md:order-1 md:w-[35%] bg-parchment flex flex-col justify-center px-6 md:px-10 lg:px-14 py-10 md:py-0 relative z-10">
+        <div className="order-2 md:order-1 md:w-[35%] bg-parchment flex flex-col justify-center px-6 md:px-10 lg:px-14 py-8 md:py-0 relative z-10">
           {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-5">
+          <div className="flex items-center gap-3 mb-3 md:mb-5">
             <span className="h-px w-8 bg-gold" />
             <span className="font-sans text-[0.68rem] uppercase tracking-[0.25em] text-gold font-medium">
               Rustic Homemade Treats
@@ -77,7 +77,7 @@ export default function Hero() {
           </div>
 
           {/* H1 */}
-          <h1 className="font-display text-[2.6rem] md:text-[4.2rem] text-espresso leading-[1.1] mb-4">
+          <h1 className="font-display text-[2.4rem] md:text-[4.2rem] text-espresso leading-[1.1] mb-3 md:mb-4">
             Baked with love &amp; time
           </h1>
 
@@ -85,13 +85,13 @@ export default function Hero() {
           <div className="w-10 h-px bg-gold mb-4" />
 
           {/* Subtext */}
-          <p className="font-serif italic text-[1rem] text-espresso/55 max-w-[340px] mb-7 leading-relaxed">
+          <p className="font-serif italic text-[0.95rem] md:text-[1rem] text-espresso/55 max-w-[340px] mb-5 md:mb-7 leading-relaxed">
             Small-batch cinnamon buns and Basque cheesecake, made from scratch
             each morning.
           </p>
 
           {/* CTA row */}
-          <div className="flex flex-wrap gap-3 mb-8">
+          <div className="flex flex-wrap gap-3 mb-5 md:mb-8">
             <Link
               href="/order"
               className="px-7 py-2.5 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
@@ -128,7 +128,7 @@ export default function Hero() {
 
         {/* ─── RIGHT COLUMN — Image carousel ─── */}
         <div
-          className="order-1 md:order-2 md:flex-1 relative overflow-hidden h-[50vw] md:h-full group"
+          className="order-1 md:order-2 md:flex-1 relative overflow-hidden h-[65vw] md:h-full group"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
@@ -148,7 +148,7 @@ export default function Hero() {
                   fill
                   quality={100}
                   className="object-cover"
-                  sizes="(max-width: 1200px) 100vw, 65vw"
+                  sizes="(max-width: 768px) 100vw, 65vw"
                   priority={current === 0}
                 />
               ) : (
