@@ -19,11 +19,23 @@ const slides: Slide[] = [
     shotId: "01",
     label: "Fresh Out of the Oven",
     ratio: "4:3",
-    src: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/IK2Kptn2rQsdZewIEL9Lx_qr89Us3I.png",
+    src: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/Re4NFP7Rn-Z-amr0fbTsb_kIhH10CR.png",
     alt: "Overhead shot of six golden cinnamon buns in a seasoned baking tin with steam rising",
   },
-  { shotId: "02", label: "The whole cheesecake", ratio: "4:3" },
-  { shotId: "03", label: "The morning spread", ratio: "4:3" },
+  {
+    shotId: "02",
+    label: "The whole cheesecake",
+    ratio: "4:3",
+    src: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/zQgQGqF8aoM2woNJYPKxw_LM8aYSHF.png",
+    alt: "45-degree angle shot of a whole Basque burnt cheesecake on aged dark slate with deeply caramelised top",
+  },
+  {
+    shotId: "03",
+    label: "The morning spread",
+    ratio: "4:3",
+    src: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/wyMjoDbkrJZ1lZ0WJBflM_S4SvHLTH.png",
+    alt: "Overhead flatlay of cinnamon buns and Basque cheesecake on parchment paper with coffee and wildflowers in morning light",
+  },
 ];
 
 export default function Hero() {

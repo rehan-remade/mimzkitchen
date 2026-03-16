@@ -18,6 +18,7 @@ function ProductRow({
   shotLabel,
   imageSrc,
   imageAlt,
+  imageQuality = 100,
   flipped,
   bgClass,
 }: {
@@ -30,6 +31,7 @@ function ProductRow({
   shotLabel: string;
   imageSrc?: string;
   imageAlt?: string;
+  imageQuality?: number;
   flipped?: boolean;
   bgClass: string;
 }) {
@@ -61,7 +63,7 @@ function ProductRow({
               src={imageSrc}
               alt={imageAlt ?? shotLabel}
               fill
-              quality={100}
+              quality={imageQuality}
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 60vw"
             />
@@ -144,8 +146,9 @@ export default function Products() {
         price="From £3.50"
         shotId="01"
         shotLabel="The golden pull"
-        imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/Bce1e9BI9wubpuQP9c_UH_0RaYRZrz.png"
-        imageAlt="Close-up of a glazed cinnamon bun with one bite taken, soft pillowy interior exposed on a ceramic plate"
+        imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/cC5tvFDAhiJTuIm3Aa6N4_EWm6XC5X.png"
+        imageAlt="Close-up of a glazed cinnamon bun with soft pillowy interior exposed on a ceramic plate"
+        imageQuality={75}
         bgClass="bg-parchment"
       />
 
@@ -161,8 +164,9 @@ export default function Products() {
         price="From £5.50 · Whole from £32"
         shotId="02"
         shotLabel="The whole cheesecake"
-        imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/MQOm_jFnLvdtAnN6bHeyd_rBmg2yLX.png"
-        imageAlt="Side-on shot of a slice of Basque cheesecake on crinkled parchment, dark caramelised crust with pale creamy interior"
+        imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/ggLQR5whirgCeVyK3Fd8z_3wt1ympl.png"
+        imageAlt="Basque cheesecake, dark caramelised crust with pale creamy interior"
+        imageQuality={75}
         flipped
         bgClass="bg-parchment-dark"
       />
