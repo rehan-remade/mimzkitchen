@@ -1,128 +1,210 @@
 "use client";
 
+import { useState, useEffect, useCallback, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import MediaSlot from "./MediaSlot";
 
-const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: "easeOut" as const },
-});
+type Slide = {
+  shotId: string;
+  label: string;
+  ratio: "4:3";
+  src?: string;
+  alt?: string;
+};
+
+const slides: Slide[] = [
+  {
+    shotId: "01",
+    label: "Fresh Out of the Oven",
+    ratio: "4:3",
+    src: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/IK2Kptn2rQsdZewIEL9Lx_qr89Us3I.png",
+    alt: "Overhead shot of six golden cinnamon buns in a seasoned baking tin with steam rising",
+  },
+  { shotId: "02", label: "The whole cheesecake", ratio: "4:3" },
+  { shotId: "03", label: "The morning spread", ratio: "4:3" },
+];
 
 export default function Hero() {
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const advance = useCallback(
+    (dir: 1 | -1 = 1) =>
+      setCurrent((prev) => (prev + dir + slides.length) % slides.length),
+    []
+  );
+
+  // Auto-advance every 5s, pause on hover
+  useEffect(() => {
+    if (paused) {
+      if (timerRef.current) clearInterval(timerRef.current);
+      return;
+    }
+    timerRef.current = setInterval(() => advance(1), 5000);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [paused, advance]);
+
   return (
-    <section className="pt-20 md:pt-24 min-h-screen">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 min-h-[calc(100vh-5rem)]">
-        {/* Left column */}
-        <div className="flex flex-col justify-center px-6 md:px-12 lg:px-20 py-16 md:py-0">
+    <section className="pt-20 md:pt-24">
+      {/* Hero container — editorial height, not full-screen */}
+      <div className="relative h-[60vh] md:h-[75vh] flex flex-col md:flex-row">
+        {/* ─── LEFT COLUMN — Brand text panel ─── */}
+        <div className="order-2 md:order-1 md:w-[35%] bg-parchment flex flex-col justify-center px-6 md:px-10 lg:px-14 py-10 md:py-0 relative z-10">
           {/* Eyebrow */}
-          <motion.div {...fadeUp(0.1)} className="flex items-center gap-4 mb-6">
-            <span className="h-px w-10 bg-gold" />
-            <span className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-gold font-medium">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="h-px w-8 bg-gold" />
+            <span className="font-sans text-[0.68rem] uppercase tracking-[0.25em] text-gold font-medium">
               Rustic Homemade Treats
             </span>
-            <span className="h-px w-10 bg-gold" />
-          </motion.div>
+            <span className="h-px w-8 bg-gold" />
+          </div>
 
           {/* H1 */}
-          <motion.h1
-            {...fadeUp(0.25)}
-            className="font-display text-5xl sm:text-6xl lg:text-[5.5rem] text-espresso leading-[1.1] mb-6"
-          >
+          <h1 className="font-display text-[2.6rem] md:text-[4.2rem] text-espresso leading-[1.1] mb-4">
             Baked with love &amp; time
-          </motion.h1>
-
-          {/* Subheading */}
-          <motion.p
-            {...fadeUp(0.4)}
-            className="font-serif italic text-lg md:text-xl text-espresso/60 max-w-[380px] mb-8 leading-relaxed"
-          >
-            Small-batch cinnamon buns and Basque cheesecakes, made from scratch
-            each morning.
-          </motion.p>
+          </h1>
 
           {/* Gold divider */}
-          <motion.div
-            {...fadeUp(0.5)}
-            className="w-16 h-px bg-gold mb-8"
-          />
+          <div className="w-10 h-px bg-gold mb-4" />
 
-          {/* CTAs */}
-          <motion.div {...fadeUp(0.6)} className="flex flex-wrap gap-4">
+          {/* Subtext */}
+          <p className="font-serif italic text-[1rem] text-espresso/55 max-w-[340px] mb-7 leading-relaxed">
+            Small-batch cinnamon buns and Basque cheesecake, made from scratch
+            each morning.
+          </p>
+
+          {/* CTA row */}
+          <div className="flex flex-wrap gap-3 mb-8">
             <Link
               href="/order"
-              className="px-8 py-3 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+              className="px-7 py-2.5 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
             >
               Order Today
             </Link>
             <Link
               href="/menu"
-              className="px-8 py-3 border border-gold text-oak text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-gold/10 transition-colors rounded-sm"
+              className="px-7 py-2.5 border border-gold text-oak text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-gold/10 transition-colors rounded-sm"
             >
               Our Menu
             </Link>
-          </motion.div>
+          </div>
+
+          {/* Carousel dots */}
+          <div className="flex items-center gap-2">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === current
+                    ? "w-6 bg-gold"
+                    : "w-2 bg-gold/30 hover:bg-gold/50"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Right column */}
-        <div className="relative bg-parchment-dark flex items-center justify-center overflow-hidden">
-          {/* Decorative circle frame */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-72 h-72 md:w-96 md:h-96 rounded-full border-2 border-gold/30 flex items-center justify-center"
-          >
-            <div className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full border border-gold/20 flex items-center justify-center">
-              {/* Whisk SVG */}
-              <svg
-                viewBox="0 0 100 140"
-                className="w-24 h-32 md:w-32 md:h-44 text-oak/30"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              >
-                <ellipse cx="50" cy="50" rx="20" ry="40" />
-                <ellipse cx="50" cy="50" rx="12" ry="38" />
-                <ellipse cx="50" cy="50" rx="4" ry="36" />
-                <line x1="50" y1="90" x2="50" y2="135" strokeWidth="3" />
-                <line x1="46" y1="90" x2="46" y2="130" strokeWidth="1" />
-                <line x1="54" y1="90" x2="54" y2="130" strokeWidth="1" />
-              </svg>
-            </div>
-          </motion.div>
+        {/* ─── Gold vertical divider ─── */}
+        <div className="hidden md:block w-px bg-gold/25 relative z-10" />
 
-          {/* Est. badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.8, type: "spring" }}
-            className="absolute top-8 right-8 md:top-16 md:right-16 w-20 h-20 md:w-24 md:h-24 rounded-full bg-oak text-cream flex flex-col items-center justify-center"
-          >
-            <span className="text-[0.5rem] md:text-[0.6rem] uppercase tracking-[0.15em] font-sans">
-              Est. with
-            </span>
-            <span className="font-display text-lg md:text-xl">love</span>
-            <span className="text-[0.55rem] md:text-[0.65rem] font-sans text-cream/70">
-              2024
-            </span>
-          </motion.div>
+        {/* ─── RIGHT COLUMN — Image carousel ─── */}
+        <div
+          className="order-1 md:order-2 md:flex-1 relative overflow-hidden h-[50vw] md:h-full group"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          {/* Slides — crossfade via AnimatePresence */}
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }}
+              exit={{ opacity: 0, transition: { duration: 0.4, ease: "easeIn" } }}
+              className="absolute inset-0"
+            >
+              {"src" in slides[current] && slides[current].src ? (
+                <Image
+                  src={slides[current].src}
+                  alt={slides[current].alt ?? slides[current].label}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1200px) 100vw, 65vw"
+                  priority={current === 0}
+                />
+              ) : (
+                <MediaSlot
+                  shotId={slides[current].shotId}
+                  label={slides[current].label}
+                  ratio={slides[current].ratio}
+                  className="w-full h-full"
+                />
+              )}
+            </motion.div>
+          </AnimatePresence>
 
-          {/* Caption overlay */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            className="absolute bottom-8 left-8 md:bottom-12 md:left-12 flex items-start gap-3"
+          {/* Slide counter — top right */}
+          <span className="absolute top-4 right-5 z-20 font-sans text-[0.7rem] tracking-[0.15em] text-cream/80 mix-blend-difference pointer-events-none">
+            {String(current + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+          </span>
+
+          {/* Arrow controls — visible on hover */}
+          <button
+            onClick={() => advance(-1)}
+            aria-label="Previous slide"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-2"
           >
-            <span className="w-0.5 h-10 bg-gold block mt-0.5" />
-            <p className="font-serif italic text-sm text-espresso/50">
-              Handmade
-              <br />
-              every morning
-            </p>
-          </motion.div>
+            <svg
+              viewBox="0 0 24 24"
+              className="w-6 h-6 text-cream/80"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          <button
+            onClick={() => advance(1)}
+            aria-label="Next slide"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-2"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="w-6 h-6 text-cream/80"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+
+          {/* Mobile dots — below image on small screens */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 md:hidden z-20">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === current
+                    ? "w-6 bg-gold"
+                    : "w-2 bg-cream/50 hover:bg-cream/70"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

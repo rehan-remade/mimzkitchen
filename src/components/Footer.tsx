@@ -1,4 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
+import { FaInstagram, FaTiktok, FaFacebookF } from "react-icons/fa";
+
+const socials = [
+  { label: "Instagram", href: "https://instagram.com", icon: FaInstagram },
+  { label: "TikTok", href: "https://tiktok.com", icon: FaTiktok },
+  { label: "Facebook", href: "https://facebook.com", icon: FaFacebookF },
+];
 
 export default function Footer() {
   return (
@@ -7,13 +15,37 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <Link href="/" className="font-display text-3xl text-cream block mb-4">
-              Mimz&apos;s Kitchen
+            <Link href="/" className="inline-flex items-center gap-4 mb-5">
+              <Image
+                src="/logo.png"
+                alt="Mimz's Kitchen"
+                width={80}
+                height={80}
+                className="w-20 h-20"
+              />
+              <span className="font-display text-3xl text-cream">
+                Mimz&apos;s Kitchen
+              </span>
             </Link>
-            <p className="font-serif italic text-cream/50 text-sm leading-relaxed max-w-xs">
+            <p className="font-serif italic text-cream/50 text-sm leading-relaxed max-w-xs mb-6">
               Small-batch cinnamon buns and Basque cheesecakes, baked fresh daily
               with love.
             </p>
+            {/* Social icons */}
+            <div className="flex items-center gap-4">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="w-9 h-9 rounded-full border border-cream/15 flex items-center justify-center text-cream/40 hover:text-gold hover:border-gold/40 transition-colors"
+                >
+                  <social.icon size={15} />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Links */}

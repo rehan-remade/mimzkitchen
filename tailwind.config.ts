@@ -29,9 +29,14 @@ const config: Config = {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "scroll-pulse": {
+          "0%, 100%": { transform: "translateY(0)", opacity: "0.6" },
+          "50%": { transform: "translateY(6px)", opacity: "1" },
+        },
       },
       animation: {
         marquee: "marquee 30s linear infinite",
+        "scroll-pulse": "scroll-pulse 2s ease-in-out infinite",
       },
     },
   },

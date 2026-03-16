@@ -1,111 +1,151 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import MediaSlot from "./MediaSlot";
 
-const products = [
-  {
-    name: "Cinnamon Buns",
-    description:
-      "Soft, swirled dough laced with Ceylon cinnamon and topped with a silky cream cheese glaze. Baked golden each morning.",
-    price: "From $4.50",
-    icon: (
-      <svg
-        viewBox="0 0 80 80"
-        className="w-16 h-16 text-oak/40"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
+const ease = [0.25, 0.1, 0.25, 1] as const;
+
+function ProductRow({
+  eyebrow,
+  name,
+  description,
+  ingredients,
+  price,
+  shotId,
+  shotLabel,
+  flipped,
+  bgClass,
+}: {
+  eyebrow: string;
+  name: string;
+  description: string;
+  ingredients: string;
+  price: string;
+  shotId: string;
+  shotLabel: string;
+  flipped?: boolean;
+  bgClass: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const imgDir = flipped ? 40 : -40;
+  const txtDir = flipped ? -40 : 40;
+
+  return (
+    <div
+      ref={ref}
+      className={`grid md:min-h-[520px] ${
+        flipped ? "md:grid-cols-[40fr_60fr]" : "md:grid-cols-[60fr_40fr]"
+      }`}
+    >
+      {/* Image pane */}
+      <motion.div
+        initial={{ opacity: 0, x: imgDir }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.8, ease }}
+        className={`group relative overflow-hidden h-[55vw] md:h-auto ${
+          flipped ? "order-first md:order-last" : ""
+        }`}
       >
-        <circle cx="40" cy="40" r="30" />
-        <path d="M40 10 C55 20, 60 35, 40 40 C20 45, 25 60, 40 70" />
-        <path d="M40 18 C50 25, 52 35, 40 40 C28 45, 30 55, 40 62" />
-        <circle cx="40" cy="40" r="5" />
-      </svg>
-    ),
-  },
-  {
-    name: "Basque Cheesecake",
-    description:
-      "Caramelised and crackled on top, impossibly creamy within. A rustic, flourless recipe inspired by San Sebasti\u00e1n.",
-    price: "From $7.00",
-    icon: (
-      <svg
-        viewBox="0 0 80 80"
-        className="w-16 h-16 text-oak/40"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
+        <div className="absolute inset-0 md:transition-transform md:duration-700 md:ease-out md:group-hover:scale-[1.04]">
+          <MediaSlot
+            shotId={shotId}
+            label={shotLabel}
+            ratio="3:2"
+            className="w-full h-full"
+          />
+        </div>
+      </motion.div>
+
+      {/* Text pane */}
+      <motion.div
+        initial={{ opacity: 0, x: txtDir }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.8, ease, delay: 0.15 }}
+        className={`${bgClass} flex flex-col justify-center px-6 py-10 md:px-[4.5rem] md:py-16`}
       >
-        <rect x="15" y="30" width="50" height="30" rx="3" />
-        <rect x="12" y="25" width="56" height="8" rx="2" />
-        <path d="M20 30 C25 20, 35 18, 40 20 C45 22, 55 20, 60 30" />
-        <line x1="25" y1="38" x2="55" y2="38" strokeDasharray="3 3" />
-        <line x1="25" y1="48" x2="55" y2="48" strokeDasharray="3 3" />
-      </svg>
-    ),
-  },
-];
+        <span className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-gold font-medium">
+          {eyebrow}
+        </span>
+        <h3 className="font-display text-[2.4rem] md:text-[3.8rem] text-espresso leading-[1.1] mt-1">
+          {name}
+        </h3>
+        <div className="w-9 h-px bg-gold my-3 md:mt-3 md:mb-6" />
+        <p className="font-serif italic text-[1.05rem] text-[#6b4f30] leading-[1.85] max-w-md mb-4">
+          {description}
+        </p>
+        <p className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-[#a08860] mb-9">
+          {ingredients}
+        </p>
+        <span className="font-serif text-[1rem] text-gold mb-5">{price}</span>
+        <Link
+          href="/order"
+          className="group/btn inline-flex items-center gap-2 w-fit px-7 py-3 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+        >
+          Order yours
+          <span className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1">
+            &rarr;
+          </span>
+        </Link>
+      </motion.div>
+    </div>
+  );
+}
 
 export default function Products() {
   return (
-    <section className="py-20 md:py-28 px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <span className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-gold font-medium">
-            What We Bake
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl text-espresso mt-2 mb-4">
-            Our Specialities
-          </h2>
-          <div className="flex items-center justify-center gap-3">
-            <span className="h-px w-12 bg-gold/40" />
-            <svg
-              viewBox="0 0 20 20"
-              className="w-4 h-4 text-gold"
-              fill="currentColor"
-            >
-              <path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.7l-4.9 2.5.9-5.5-4-3.9 5.5-.8z" />
-            </svg>
-            <span className="h-px w-12 bg-gold/40" />
-          </div>
-        </div>
-
-        {/* Product grid */}
-        <div className="grid md:grid-cols-2 gap-[2px] bg-gold/30">
-          {products.map((product, i) => (
-            <motion.div
-              key={product.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="group bg-parchment hover:bg-parchment-dark transition-colors duration-300 p-10 md:p-14"
-            >
-              <div className="mb-6">{product.icon}</div>
-              <h3 className="font-serif text-2xl md:text-3xl text-espresso mb-3 group-hover:text-oak transition-colors">
-                {product.name}
-              </h3>
-              <div className="w-8 h-px bg-gold mb-4 group-hover:w-16 transition-all duration-300" />
-              <p className="font-serif text-espresso/60 leading-relaxed mb-6 max-w-sm">
-                {product.description}
-              </p>
-              <div className="flex items-center justify-between">
-                <span className="font-sans text-sm text-gold font-medium">
-                  {product.price}
-                </span>
-                <Link
-                  href="/order"
-                  className="font-sans text-[0.65rem] uppercase tracking-[0.2em] text-oak hover:text-gold transition-colors"
-                >
-                  Order &rarr;
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+    <section className="pt-16 pb-14 md:pt-16 md:pb-14">
+      {/* Section header */}
+      <div className="text-center mb-14 px-6">
+        <span className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-gold font-medium">
+          What We Bake
+        </span>
+        <h2 className="font-display text-4xl md:text-5xl text-espresso mt-2 mb-4">
+          Our Specialities
+        </h2>
+        <div className="flex items-center justify-center gap-3">
+          <span className="h-px w-12 bg-gold/40" />
+          <svg
+            viewBox="0 0 20 20"
+            className="w-4 h-4 text-gold"
+            fill="currentColor"
+          >
+            <path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.7l-4.9 2.5.9-5.5-4-3.9 5.5-.8z" />
+          </svg>
+          <span className="h-px w-12 bg-gold/40" />
         </div>
       </div>
+
+      {/* Row 1 — Cinnamon Buns (image left, text right) */}
+      <ProductRow
+        eyebrow="Our signature"
+        name="Cinnamon Buns"
+        description="Soft, swirled dough laced with Ceylon cinnamon and topped with a silky cream cheese glaze. Baked golden each morning."
+        ingredients="Ceylon cinnamon · Brown butter · Cream cheese glaze"
+        price="From £3.50"
+        shotId="01"
+        shotLabel="The golden pull"
+        bgClass="bg-parchment"
+      />
+
+      {/* 1px divider */}
+      <div className="h-px w-full bg-espresso/[0.12]" />
+
+      {/* Row 2 — Basque Cheesecake (text left, image right) */}
+      <ProductRow
+        eyebrow="The showstopper"
+        name="Basque Cheesecake"
+        description="Caramelised and crackled on top, impossibly creamy within. A rustic, flourless recipe inspired by San Sebastián."
+        ingredients="Full-fat cream cheese · Vanilla · Crème fraîche"
+        price="From £5.50 · Whole from £32"
+        shotId="02"
+        shotLabel="The whole cheesecake"
+        flipped
+        bgClass="bg-parchment-dark"
+      />
     </section>
   );
 }

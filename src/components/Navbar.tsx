@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -32,10 +33,20 @@ export default function Navbar() {
           : "bg-parchment"
       } border-b border-gold/20`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
-        {/* Logo */}
-        <Link href="/" className="font-display text-3xl md:text-4xl text-oak">
-          Mimz&apos;s Kitchen
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20 md:h-24">
+        {/* Logo + brand name */}
+        <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+          <Image
+            src="/logo.png"
+            alt="Mimz's Kitchen"
+            width={80}
+            height={80}
+            className="w-14 h-14 md:w-[4.5rem] md:h-[4.5rem]"
+            priority
+          />
+          <span className="font-display text-2xl md:text-3xl text-oak">
+            Mimz&apos;s Kitchen
+          </span>
         </Link>
 
         {/* Desktop nav */}
