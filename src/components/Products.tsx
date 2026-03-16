@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -15,6 +16,8 @@ function ProductRow({
   price,
   shotId,
   shotLabel,
+  imageSrc,
+  imageAlt,
   flipped,
   bgClass,
 }: {
@@ -25,6 +28,8 @@ function ProductRow({
   price: string;
   shotId: string;
   shotLabel: string;
+  imageSrc?: string;
+  imageAlt?: string;
   flipped?: boolean;
   bgClass: string;
 }) {
@@ -51,12 +56,23 @@ function ProductRow({
         }`}
       >
         <div className="absolute inset-0 md:transition-transform md:duration-700 md:ease-out md:group-hover:scale-[1.04]">
-          <MediaSlot
-            shotId={shotId}
-            label={shotLabel}
-            ratio="3:2"
-            className="w-full h-full"
-          />
+          {imageSrc ? (
+            <Image
+              src={imageSrc}
+              alt={imageAlt ?? shotLabel}
+              fill
+              quality={100}
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 60vw"
+            />
+          ) : (
+            <MediaSlot
+              shotId={shotId}
+              label={shotLabel}
+              ratio="3:2"
+              className="w-full h-full"
+            />
+          )}
         </div>
       </motion.div>
 
@@ -128,6 +144,8 @@ export default function Products() {
         price="From £3.50"
         shotId="01"
         shotLabel="The golden pull"
+        imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/Bce1e9BI9wubpuQP9c_UH_0RaYRZrz.png"
+        imageAlt="Close-up of a glazed cinnamon bun with one bite taken, soft pillowy interior exposed on a ceramic plate"
         bgClass="bg-parchment"
       />
 
@@ -143,6 +161,8 @@ export default function Products() {
         price="From £5.50 · Whole from £32"
         shotId="02"
         shotLabel="The whole cheesecake"
+        imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/MQOm_jFnLvdtAnN6bHeyd_rBmg2yLX.png"
+        imageAlt="Side-on shot of a slice of Basque cheesecake on crinkled parchment, dark caramelised crust with pale creamy interior"
         flipped
         bgClass="bg-parchment-dark"
       />

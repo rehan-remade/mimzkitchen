@@ -134,6 +134,7 @@ export default function Hero() {
                   src={slides[current].src}
                   alt={slides[current].alt ?? slides[current].label}
                   fill
+                  quality={100}
                   className="object-cover"
                   sizes="(max-width: 1200px) 100vw, 65vw"
                   priority={current === 0}
