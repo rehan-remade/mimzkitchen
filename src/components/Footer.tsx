@@ -56,6 +56,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { label: "Our Story", href: "/about" },
+                { label: "FAQs", href: "/faq" },
                 { label: "Order", href: "/order" },
               ].map((link) => (
                 <li key={link.href}>
