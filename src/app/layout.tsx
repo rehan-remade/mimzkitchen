@@ -28,15 +28,16 @@ const jost = Jost({
 
 const siteUrl = "https://www.mimzskitchen.com";
 
+const siteDescription =
+  "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love. Based near Windsor & Slough.";
+
 export const metadata: Metadata = {
   title: "Mimz's Kitchen — Artisan Bakery",
-  description:
-    "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love. Based near Windsor & Slough.",
+  description: siteDescription,
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "Mimz's Kitchen — Artisan Bakery",
-    description:
-      "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love.",
+    description: siteDescription,
     url: siteUrl,
     siteName: "Mimz's Kitchen",
     images: [
@@ -53,8 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Mimz's Kitchen — Artisan Bakery",
-    description:
-      "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love.",
+    description: siteDescription,
     images: ["/og.png"],
   },
 };
@@ -70,6 +70,31 @@ export default function RootLayout({
       className={`${greatVibes.variable} ${cormorant.variable} ${jost.variable}`}
     >
       <body className="font-sans antialiased bg-parchment text-espresso">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Bakery",
+              name: "Mimz's Kitchen",
+              description: siteDescription,
+              url: siteUrl,
+              telephone: "+447404697364",
+              email: "askmimz@mimzskitchen.com",
+              areaServed: {
+                "@type": "Place",
+                name: "Windsor & Slough, Berkshire",
+              },
+              servesCuisine: ["Bakery", "Pastries"],
+              menu: `${siteUrl}/order`,
+              sameAs: [
+                "https://instagram.com/mimzkitchen",
+              ],
+              image: `${siteUrl}/og.png`,
+              priceRange: "££",
+            }),
+          }}
+        />
         <Navbar />
         <main className="overflow-x-clip">{children}</main>
         <Footer />
