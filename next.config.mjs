@@ -8,6 +8,22 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "mimzskitchen.co.uk" }],
+        destination: "https://www.mimzskitchen.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.mimzskitchen.co.uk" }],
+        destination: "https://www.mimzskitchen.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
