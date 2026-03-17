@@ -9,7 +9,7 @@ export default function LeafDivider({ className = "" }: { className?: string }) 
         alt=""
         width={24}
         height={24}
-        quality={50}
+        quality={100}
         className="w-12 h-12"
         aria-hidden
       />
