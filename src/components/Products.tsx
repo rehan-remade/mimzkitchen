@@ -129,8 +129,8 @@ export default function Products() {
       <ProductRow
         eyebrow="Our signature"
         name="Cinnamon Rolls"
-        description="Soft, swirled dough laced with Ceylon cinnamon and topped with a silky cream cheese glaze. Baked golden each morning."
-        ingredients="Ceylon cinnamon · Brown butter · Cream cheese glaze"
+        description="Soft, swirled dough laced with cinnamon and topped with a silky cream cheese frosting. Baked golden each morning."
+        ingredients="Cinnamon · Brown butter · Cream cheese frosting"
         shotId="01"
         shotLabel="The golden pull"
         imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/riGTnP4gdCfdx4dTF8rbv_vqaBkGdk.png"
@@ -146,7 +146,7 @@ export default function Products() {
       <ProductRow
         eyebrow="The showstopper"
         name="Basque Cheesecake"
-        description="Caramelised and crackled on top, impossibly creamy within. A rustic, flourless recipe inspired by San Sebastián."
+        description="Caramelised and crackled on top, impossibly creamy within. A rustic indulgent recipe inspired by Northern Spain."
         ingredients="Full-fat cream cheese · Vanilla · Crème fraîche"
         shotId="02"
         shotLabel="The whole cheesecake"

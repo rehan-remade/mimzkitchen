@@ -7,10 +7,11 @@ export default function LeafDivider({ className = "" }: { className?: string }) 
       <Image
         src="/leaf.png"
         alt=""
-        width={24}
-        height={24}
+        width={48}
+        height={48}
         quality={100}
         className="w-12 h-12"
+        unoptimized
         aria-hidden
       />
       <span className="h-px w-12 bg-gold/40" />

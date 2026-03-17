@@ -1,25 +1,41 @@
-export default function Marquee() {
-  const text =
-    "Cinnamon Rolls \u2726 Basque Cheesecake \u2726 Baked Fresh Daily \u2726 Small Batch \u2726 Rustic Homemade Treats \u2726 Made with Love \u2726 ";
+const items = [
+  "Cinnamon Rolls",
+  "Basque Cheesecake",
+  "Baked Fresh",
+  "Small Batch",
+  "Rustic Homemade Treats",
+  "Made with Love",
+];
 
+function Dot() {
+  return (
+    <span className="w-1.5 h-1.5 rounded-full bg-gold mx-5 inline-block" />
+  );
+}
+
+function MarqueeContent() {
+  return (
+    <>
+      {items.map((item, i) => (
+        <span key={i} className="inline-flex items-center">
+          <span className="font-serif italic text-cream text-lg md:text-xl tracking-wide">
+            {item}
+          </span>
+          <Dot />
+        </span>
+      ))}
+    </>
+  );
+}
+
+export default function Marquee() {
   return (
     <section className="bg-espresso overflow-hidden py-4">
       <div className="animate-marquee whitespace-nowrap flex">
-        {[...Array(4)].map((_, i) => (
-          <span
-            key={i}
-            className="font-serif italic text-cream text-lg md:text-xl tracking-wide mx-0"
-          >
-            {text.split("\u2726").map((segment, j) => (
-              <span key={j}>
-                {segment}
-                {j < text.split("\u2726").length - 1 && (
-                  <span className="text-gold">{"\u2726"}</span>
-                )}
-              </span>
-            ))}
-          </span>
-        ))}
+        <MarqueeContent />
+        <MarqueeContent />
+        <MarqueeContent />
+        <MarqueeContent />
       </div>
     </section>
   );

@@ -20,7 +20,7 @@ const values = [
   {
     title: "Real Ingredients",
     description:
-      "European butter, free-range eggs, pure vanilla, and Ceylon cinnamon. No shortcuts.",
+      "Real butter, free-range eggs, pure vanilla, and cinnamon. No shortcuts.",
   },
   {
     title: "Made by Hand",
@@ -48,7 +48,7 @@ export default function AboutPage() {
         <motion.div {...fadeUp(0.1)} className="max-w-2xl mx-auto mb-20">
           <p className="font-serif text-lg text-espresso/80 leading-relaxed mb-6">
             Mimz&apos;s Kitchen started with a simple craving: a perfect
-            cinnamon roll. Not the mass-produced kind you find at the mall, but
+            cinnamon roll. Not the mass-produced kind you find at the shopping centre, but
             the soft, fragrant, pull-apart kind that fills an entire kitchen with
             warmth.
           </p>
@@ -59,8 +59,8 @@ export default function AboutPage() {
             2024, Mimz&apos;s Kitchen was born.
           </p>
           <p className="font-serif text-lg text-espresso/80 leading-relaxed mb-6">
-            Inspired by the rustic bakeries of Paris and the burnt cheesecakes of
-            San Sebasti&aacute;n, we keep things simple: exceptional ingredients,
+            Inspired by rustic patisseries and the burnt cheesecakes of
+            Northern Spain, we keep things simple: exceptional ingredients,
             time-honoured techniques, and enough patience to let the dough rise
             properly.
           </p>

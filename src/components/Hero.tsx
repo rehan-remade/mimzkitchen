@@ -156,10 +156,6 @@ export default function Hero() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Slide counter — top right */}
-          <span className="absolute top-4 right-5 z-20 font-sans text-[0.7rem] tracking-[0.15em] text-cream/80 mix-blend-difference pointer-events-none">
-            {String(current + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-          </span>
 
           {/* Arrow controls — visible on hover */}
           <button

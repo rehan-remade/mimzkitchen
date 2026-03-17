@@ -9,7 +9,10 @@ import AddressLookup from "@/components/AddressLookup";
 const menuItems = [
   { id: "cinnamon-roll", name: "Cinnamon Roll", desc: "Per roll", price: 6 },
   { id: "cheesecake-slice", name: "Basque Cheesecake", desc: "Single slice", price: 7 },
-  { id: "cheesecake-whole", name: "Whole Basque Cheesecake", desc: "Serves 8–10", price: 50 },
+  { id: "cheesecake-whole", name: "Whole Basque Cheesecake", desc: "Serves 8\u201310", price: 50 },
+  { id: "sauce-butterscotch", name: "Salted Butterscotch Sauce", desc: "Sauce pot, sold separately", price: 0 },
+  { id: "sauce-chocolate", name: "Chocolate Ganache Sauce", desc: "Sauce pot, sold separately", price: 0 },
+  { id: "sauce-raspberry", name: "Raspberry Coulis", desc: "Sauce pot, sold separately", price: 0 },
 ];
 
 const INSTAGRAM_USERNAME = "mimzskitchen";
@@ -137,9 +140,11 @@ export default function OrderPage() {
                 <div>
                   <h3 className="font-serif text-espresso">{item.name}</h3>
                   <p className="font-serif text-sm text-espresso/50">{item.desc}</p>
-                  <span className="font-sans text-base font-medium text-espresso">
-                    £{item.price.toFixed(2)}
-                  </span>
+                  {item.price > 0 && (
+                    <span className="font-sans text-base font-medium text-espresso">
+                      £{item.price.toFixed(2)}
+                    </span>
+                  )}
                 </div>
                 <div className="flex items-center gap-3">
                   <button
