@@ -89,7 +89,7 @@ export default function RootLayout({
               servesCuisine: ["Bakery", "Pastries"],
               menu: `${siteUrl}/order`,
               sameAs: [
-                "https://instagram.com/mimzkitchen",
+                "https://www.instagram.com/mimzskitchen",
               ],
               image: `${siteUrl}/og.png`,
               priceRange: "££",

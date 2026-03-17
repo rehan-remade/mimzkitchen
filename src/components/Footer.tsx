@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaInstagram, FaTiktok, FaFacebookF } from "react-icons/fa";
 
 const socials = [
-  { label: "Instagram", href: "https://instagram.com/mimzkitchen", icon: FaInstagram },
+  { label: "Instagram", href: "https://www.instagram.com/mimzskitchen", icon: FaInstagram },
   { label: "TikTok", href: "https://tiktok.com", icon: FaTiktok },
   { label: "Facebook", href: "https://facebook.com", icon: FaFacebookF },
 ];
