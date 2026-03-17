@@ -70,7 +70,7 @@ export default function Hero() {
           {/* Eyebrow */}
           <div className="flex items-center gap-3 mb-3 md:mb-5">
             <span className="h-px w-8 bg-gold" />
-            <span className="font-sans text-[0.68rem] uppercase tracking-[0.25em] text-gold font-medium">
+            <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold font-medium">
               Rustic Homemade Treats
             </span>
             <span className="h-px w-8 bg-gold" />
@@ -85,7 +85,7 @@ export default function Hero() {
           <div className="w-10 h-px bg-gold mb-4" />
 
           {/* Subtext */}
-          <p className="font-serif italic text-[0.95rem] md:text-[1rem] text-espresso/55 max-w-[340px] mb-5 md:mb-7 leading-relaxed">
+          <p className="font-serif italic text-[0.95rem] md:text-[1rem] text-espresso/70 max-w-[340px] mb-5 md:mb-7 leading-relaxed">
             Small-batch cinnamon rolls and Basque cheesecake, made from scratch
             each morning.
           </p>
@@ -94,7 +94,7 @@ export default function Hero() {
           <div className="flex flex-wrap gap-3 mb-5 md:mb-8">
             <Link
               href="/order"
-              className="px-7 py-2.5 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+              className="px-7 py-2.5 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
             >
               Order Today
             </Link>

@@ -2,19 +2,30 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { FaWhatsapp, FaInstagram, FaEnvelope } from "react-icons/fa";
 import LeafDivider from "@/components/LeafDivider";
+import AddressLookup from "@/components/AddressLookup";
 
 const menuItems = [
-  { id: "cinnamon-roll", name: "Cinnamon Roll", price: 4.5 },
-  { id: "basque-cheesecake", name: "Basque Cheesecake", price: 7.0 },
+  { id: "cinnamon-roll", name: "Cinnamon Roll", desc: "Per roll", price: 6 },
+  { id: "cheesecake-slice", name: "Basque Cheesecake", desc: "Single slice", price: 7 },
+  { id: "cheesecake-whole", name: "Whole Basque Cheesecake", desc: "Serves 8–10", price: 50 },
 ];
+
+const INSTAGRAM_USERNAME = "mimzskitchen";
+const WHATSAPP_NUMBER = "447902780164";
+
+type OrderType = "pickup" | "delivery";
 
 export default function OrderPage() {
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [pickup, setPickup] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [orderType, setOrderType] = useState<OrderType>("pickup");
+  const [prefDate, setPrefDate] = useState("");
+  const [prefTime, setPrefTime] = useState("");
+  const [address, setAddress] = useState("");
+  const [postcode, setPostcode] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const updateQty = (id: string, delta: number) => {
     setQuantities((prev) => {
@@ -31,183 +42,304 @@ export default function OrderPage() {
 
   const itemCount = Object.values(quantities).reduce((a, b) => a + b, 0);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
+  const buildOrderMessage = () => {
+    const items = menuItems
+      .filter((item) => (quantities[item.id] || 0) > 0)
+      .map((item) => `  - ${quantities[item.id]}x ${item.name}`)
+      .join("\n");
+
+    let msg = `Hi Mimz's Kitchen!\n\n`;
+    msg += `I'd like to place an order for ${orderType}:\n\n`;
+    msg += `${items}\n\n`;
+    msg += `Name: ${name}\n`;
+    const prefStr = [prefDate, prefTime].filter(Boolean).join(" at ");
+    if (prefStr) msg += `Preferred time: ${prefStr}\n`;
+    if (orderType === "delivery") {
+      if (address) msg += `Address: ${address}\n`;
+      if (postcode) msg += `Postcode: ${postcode}\n`;
+    }
+    msg += `\nThank you!`;
+
+    return msg;
   };
 
-  if (submitted) {
-    return (
-      <section className="pt-28 md:pt-36 pb-20 px-6 min-h-screen flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center max-w-md"
-        >
-          <div className="w-16 h-16 rounded-full bg-oak/10 flex items-center justify-center mx-auto mb-6">
-            <svg
-              viewBox="0 0 24 24"
-              className="w-8 h-8 text-oak"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          </div>
-          <h1 className="font-display text-4xl text-espresso mb-3">
-            Thank You!
-          </h1>
-          <p className="font-serif text-espresso/60 leading-relaxed">
-            Your order has been received. We&apos;ll send a confirmation to{" "}
-            <span className="text-oak">{email}</span> shortly.
-          </p>
-        </motion.div>
-      </section>
-    );
-  }
+  const handleWhatsApp = () => {
+    const message = encodeURIComponent(buildOrderMessage());
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
+  };
+
+  const buildEmailHref = () => {
+    const subject = encodeURIComponent(`New Order from ${name}`);
+    const body = encodeURIComponent(buildOrderMessage());
+    return `mailto:askmimz@mimzskitchen.com?subject=${subject}&body=${body}`;
+  };
+
+  const handleInstagram = async () => {
+    const message = buildOrderMessage();
+    try {
+      await navigator.clipboard.writeText(message);
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = message;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+    setCopied(true);
+    setTimeout(() => {
+      window.open(`https://ig.me/m/${INSTAGRAM_USERNAME}`, "_blank");
+    }, 600);
+    setTimeout(() => setCopied(false), 3000);
+  };
+
+  const isValid =
+    itemCount > 0 &&
+    name.trim().length > 0 &&
+    (orderType === "pickup" || address.trim().length > 0);
+
+  const inputClass =
+    "w-full px-4 py-3 bg-parchment-dark/50 border border-gold/20 rounded-sm font-serif text-espresso placeholder:text-espresso/30 focus:outline-none focus:border-gold transition-colors";
 
   return (
     <section className="pt-28 md:pt-36 pb-20 px-6">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-gold font-medium">
+          <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold font-medium">
             Pickup &amp; Delivery
           </span>
           <h1 className="font-display text-5xl md:text-6xl text-espresso mt-2 mb-4">
             Place an Order
           </h1>
           <LeafDivider />
-          <p className="font-serif italic text-espresso/50 mt-4 max-w-md mx-auto">
-            Select your items, choose a pickup time, and we&apos;ll have
-            everything ready for you.
+          <p className="font-serif italic text-espresso/65 mt-4 max-w-md mx-auto">
+            Select your items, fill in your details, and send your order
+            via WhatsApp or Instagram.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          {/* Items */}
-          <div className="mb-12">
-            <h2 className="font-display text-2xl text-espresso mb-2">
-              Select Items
-            </h2>
-            <div className="w-8 h-px bg-gold mb-6" />
+        {/* Items */}
+        <div className="mb-12">
+          <h2 className="font-display text-2xl text-espresso mb-2">
+            Select Items
+          </h2>
+          <div className="w-8 h-px bg-gold mb-6" />
 
-            <div className="space-y-4">
-              {menuItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between py-4 px-5 bg-parchment-dark/50 rounded-sm"
-                >
-                  <div>
-                    <h3 className="font-serif text-espresso">{item.name}</h3>
-                    <span className="font-sans text-sm text-gold">
-                      ${item.price.toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => updateQty(item.id, -1)}
-                      className="w-8 h-8 flex items-center justify-center border border-gold/30 text-oak hover:bg-gold/10 transition-colors rounded-sm text-lg"
-                    >
-                      &minus;
-                    </button>
-                    <span className="font-sans w-6 text-center text-espresso">
-                      {quantities[item.id] || 0}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => updateQty(item.id, 1)}
-                      className="w-8 h-8 flex items-center justify-center border border-gold/30 text-oak hover:bg-gold/10 transition-colors rounded-sm text-lg"
-                    >
-                      +
-                    </button>
-                  </div>
+          <div className="space-y-4">
+            {menuItems.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center justify-between py-4 px-5 bg-parchment-dark/50 rounded-sm"
+              >
+                <div>
+                  <h3 className="font-serif text-espresso">{item.name}</h3>
+                  <p className="font-serif text-sm text-espresso/50">{item.desc}</p>
+                  <span className="font-sans text-base font-medium text-espresso">
+                    £{item.price.toFixed(2)}
+                  </span>
                 </div>
-              ))}
-            </div>
-
-            {itemCount > 0 && (
-              <div className="mt-6 pt-4 border-t border-gold/20 flex justify-between items-center">
-                <span className="font-serif text-espresso/60">
-                  {itemCount} item{itemCount !== 1 ? "s" : ""}
-                </span>
-                <span className="font-serif text-xl text-espresso">
-                  Total: ${total.toFixed(2)}
-                </span>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => updateQty(item.id, -1)}
+                    className="w-8 h-8 flex items-center justify-center border border-gold/30 text-oak hover:bg-gold/10 transition-colors rounded-sm text-lg"
+                  >
+                    &minus;
+                  </button>
+                  <span className="font-sans w-6 text-center text-espresso">
+                    {quantities[item.id] || 0}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => updateQty(item.id, 1)}
+                    className="w-8 h-8 flex items-center justify-center border border-gold/30 text-oak hover:bg-gold/10 transition-colors rounded-sm text-lg"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
-            )}
+            ))}
           </div>
 
-          {/* Details */}
-          <div className="mb-12">
-            <h2 className="font-display text-2xl text-espresso mb-2">
-              Your Details
-            </h2>
-            <div className="w-8 h-px bg-gold mb-6" />
+          {itemCount > 0 && (
+            <div className="mt-6 pt-4 border-t border-gold/20 flex justify-between items-center">
+              <span className="font-serif text-espresso/75">
+                {itemCount} item{itemCount !== 1 ? "s" : ""}
+              </span>
+              <span className="font-serif text-xl text-espresso">
+                Total: £{total.toFixed(2)}
+              </span>
+            </div>
+          )}
+        </div>
 
-            <div className="space-y-4">
-              <div>
-                <label className="block font-sans text-[0.65rem] uppercase tracking-[0.2em] text-espresso/60 mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 bg-parchment-dark/50 border border-gold/20 rounded-sm font-serif text-espresso placeholder:text-espresso/30 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="Your name"
-                />
+        {/* Details */}
+        <div className="mb-12">
+          <h2 className="font-display text-2xl text-espresso mb-2">
+            Your Details
+          </h2>
+          <div className="w-8 h-px bg-gold mb-6" />
+
+          <div className="space-y-4">
+            {/* Name */}
+            <div>
+              <label className="block font-sans text-[0.75rem] uppercase tracking-[0.2em] text-espresso/75 mb-2">
+                Name
+              </label>
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                autoComplete="name"
+                className={inputClass}
+                placeholder="Your name"
+              />
+            </div>
+
+            {/* Pickup / Delivery toggle */}
+            <div>
+              <label className="block font-sans text-[0.75rem] uppercase tracking-[0.2em] text-espresso/75 mb-2">
+                Order Type
+              </label>
+              <div className="grid grid-cols-2 gap-[1px] bg-gold/20">
+                {(["pickup", "delivery"] as const).map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => setOrderType(type)}
+                    className={`py-3 font-sans text-[0.8rem] uppercase tracking-[0.15em] transition-colors ${
+                      orderType === type
+                        ? "bg-oak text-cream"
+                        : "bg-parchment-dark/50 text-espresso/75 hover:bg-parchment-dark"
+                    }`}
+                  >
+                    {type}
+                  </button>
+                ))}
               </div>
-              <div>
-                <label className="block font-sans text-[0.65rem] uppercase tracking-[0.2em] text-espresso/60 mb-2">
-                  Email
-                </label>
+            </div>
+
+            {/* Delivery address — with address lookup */}
+            {orderType === "delivery" && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="space-y-4"
+              >
+                <div>
+                  <label className="block font-sans text-[0.75rem] uppercase tracking-[0.2em] text-espresso/75 mb-2">
+                    Address
+                  </label>
+                  <AddressLookup
+                    inputClass={inputClass}
+                    onChange={(val) => setAddress(val)}
+                    onSelect={(addr, pc) => {
+                      setAddress(addr);
+                      setPostcode(pc);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="block font-sans text-[0.75rem] uppercase tracking-[0.2em] text-espresso/75 mb-2">
+                    Postcode
+                  </label>
+                  <input
+                    type="text"
+                    value={postcode}
+                    onChange={(e) => setPostcode(e.target.value)}
+                    className={inputClass}
+                    placeholder="e.g. SW1A 1AA"
+                  />
+                </div>
+              </motion.div>
+            )}
+
+            {/* Preferred date & time */}
+            <div>
+              <label className="block font-sans text-[0.75rem] uppercase tracking-[0.2em] text-espresso/75 mb-2">
+                Preferred {orderType === "pickup" ? "pickup" : "delivery"} date &amp; time
+              </label>
+              <div className="grid grid-cols-2 gap-3">
                 <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-parchment-dark/50 border border-gold/20 rounded-sm font-serif text-espresso placeholder:text-espresso/30 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="you@example.com"
+                  type="date"
+                  value={prefDate}
+                  onChange={(e) => setPrefDate(e.target.value)}
+                  min={new Date().toISOString().split("T")[0]}
+                  className={inputClass}
                 />
-              </div>
-              <div>
-                <label className="block font-sans text-[0.65rem] uppercase tracking-[0.2em] text-espresso/60 mb-2">
-                  Pickup Time
-                </label>
                 <select
-                  required
-                  value={pickup}
-                  onChange={(e) => setPickup(e.target.value)}
-                  className="w-full px-4 py-3 bg-parchment-dark/50 border border-gold/20 rounded-sm font-serif text-espresso focus:outline-none focus:border-gold transition-colors"
+                  value={prefTime}
+                  onChange={(e) => setPrefTime(e.target.value)}
+                  className={inputClass}
                 >
-                  <option value="">Select a time</option>
-                  <option>Tomorrow 8:00 AM</option>
-                  <option>Tomorrow 9:00 AM</option>
-                  <option>Tomorrow 10:00 AM</option>
-                  <option>Tomorrow 11:00 AM</option>
-                  <option>Tomorrow 12:00 PM</option>
-                  <option>Tomorrow 1:00 PM</option>
-                  <option>Tomorrow 2:00 PM</option>
+                  <option value="">Time</option>
+                  <option>8:00 AM</option>
+                  <option>9:00 AM</option>
+                  <option>10:00 AM</option>
+                  <option>11:00 AM</option>
+                  <option>12:00 PM</option>
+                  <option>1:00 PM</option>
+                  <option>2:00 PM</option>
+                  <option>3:00 PM</option>
                 </select>
               </div>
+              <p className="font-serif text-sm text-espresso/50 mt-2 italic">
+                Let us know when works best for you and we&apos;ll do our best to
+                accommodate. We&apos;ll confirm the exact time when we get back to you.
+              </p>
             </div>
           </div>
+        </div>
 
-          {/* Submit */}
+        {/* Order buttons */}
+        <div className="space-y-3">
           <button
-            type="submit"
-            disabled={itemCount === 0}
-            className="w-full py-4 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm disabled:opacity-40 disabled:cursor-not-allowed"
+            onClick={handleWhatsApp}
+            disabled={!isValid}
+            className="w-full py-4 bg-[#25D366] text-white text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-[#1fb855] transition-colors rounded-sm disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3"
           >
-            Submit Order &mdash; ${total.toFixed(2)}
+            <FaWhatsapp size={18} />
+            Order via WhatsApp
           </button>
-        </form>
+
+          <a
+            href={isValid ? buildEmailHref() : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`w-full py-4 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm flex items-center justify-center gap-3 ${
+              !isValid ? "opacity-40 pointer-events-none" : ""
+            }`}
+            aria-disabled={!isValid}
+          >
+            <FaEnvelope size={16} />
+            Order via Email
+          </a>
+
+          <button
+            onClick={handleInstagram}
+            disabled={!isValid}
+            className="w-full py-4 bg-gradient-to-r from-[#833AB4] via-[#C13584] to-[#F56040] text-white text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:opacity-90 transition-opacity rounded-sm disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+          >
+            <FaInstagram size={18} />
+            Order via Instagram
+          </button>
+        </div>
+
+        {/* Copied toast */}
+        <motion.div
+          initial={false}
+          animate={{ opacity: copied ? 1 : 0, y: copied ? 0 : 10 }}
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-espresso text-cream px-6 py-3 rounded-sm shadow-lg pointer-events-none z-50"
+        >
+          <p className="font-sans text-[0.8rem] tracking-[0.1em]">
+            Order copied to clipboard — paste it in the DM!
+          </p>
+        </motion.div>
       </div>
     </section>
   );

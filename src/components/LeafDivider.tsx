@@ -1,15 +1,18 @@
+import Image from "next/image";
+
 export default function LeafDivider({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center justify-center gap-3 ${className}`}>
       <span className="h-px w-12 bg-gold/40" />
-      <svg
-        viewBox="0 0 20 20"
-        className="w-4 h-4 text-gold"
-        fill="currentColor"
-      >
-        <path d="M10 3C10 3 4 8 4 12c0 3.3 2.7 5 6 5s6-1.7 6-5c0-4-6-9-6-9z" />
-        <path d="M10 8v9" fill="none" stroke="currentColor" strokeWidth="1" />
-      </svg>
+      <Image
+        src="/leaf.png"
+        alt=""
+        width={24}
+        height={24}
+        quality={50}
+        className="w-12 h-12"
+        aria-hidden
+      />
       <span className="h-px w-12 bg-gold/40" />
     </div>
   );

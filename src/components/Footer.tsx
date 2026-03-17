@@ -27,7 +27,7 @@ export default function Footer() {
                 Mimz&apos;s Kitchen
               </span>
             </Link>
-            <p className="font-serif italic text-cream/50 text-sm leading-relaxed max-w-xs mb-6">
+            <p className="font-serif italic text-cream/65 text-sm leading-relaxed max-w-xs mb-6">
               Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily
               with love.
             </p>
@@ -40,7 +40,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-9 h-9 rounded-full border border-cream/15 flex items-center justify-center text-cream/40 hover:text-gold hover:border-gold/40 transition-colors"
+                  className="w-9 h-9 rounded-full border border-cream/15 flex items-center justify-center text-cream/60 hover:text-gold hover:border-gold/40 transition-colors"
                 >
                   <social.icon size={15} />
                 </a>
@@ -50,7 +50,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-gold mb-4">
+            <h4 className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold mb-4">
               Navigate
             </h4>
             <ul className="space-y-2">
@@ -72,28 +72,32 @@ export default function Footer() {
 
           {/* Contact */}
           <div id="find-us">
-            <h4 className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-gold mb-4">
-              Find Us
+            <h4 className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold mb-4">
+              Contact
             </h4>
-            <address className="font-serif text-sm text-cream/60 not-italic leading-relaxed">
-              123 Rue de la Boulangerie
-              <br />
-              Paris-Inspired District
-              <br />
-              <br />
-              Open daily: 7am &ndash; 3pm
-              <br />
-              hello@mimzskitchen.com
-            </address>
+            <div className="font-serif text-sm text-cream/60 leading-relaxed space-y-2">
+              <a
+                href="tel:+447902780164"
+                className="block hover:text-cream transition-colors"
+              >
+                +44 7902 780164
+              </a>
+              <a
+                href="mailto:askmimz@mimzskitchen.com"
+                className="block hover:text-cream transition-colors"
+              >
+                askmimz@mimzskitchen.com
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Divider + copyright */}
         <div className="border-t border-cream/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-sans text-[0.6rem] uppercase tracking-[0.2em] text-cream/30">
+          <p className="font-sans text-[0.75rem] uppercase tracking-[0.2em] text-cream/50">
             &copy; 2024 Mimz&apos;s Kitchen. All rights reserved.
           </p>
-          <p className="font-serif italic text-[0.7rem] text-cream/30">
+          <p className="font-serif italic text-[0.75rem] text-cream/50">
             Baked with love
           </p>
         </div>

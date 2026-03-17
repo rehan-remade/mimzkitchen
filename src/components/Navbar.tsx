@@ -54,7 +54,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="font-sans text-[0.72rem] uppercase tracking-[0.2em] text-espresso/70 hover:text-oak transition-colors"
+                className="font-sans text-[0.8rem] uppercase tracking-[0.2em] text-espresso/80 hover:text-oak transition-colors"
               >
                 {link.label}
               </Link>
@@ -65,7 +65,7 @@ export default function Navbar() {
         {/* CTA */}
         <Link
           href="/order"
-          className="hidden md:inline-flex items-center px-6 py-2.5 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+          className="hidden md:inline-flex items-center px-6 py-2.5 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
         >
           Order Now
         </Link>
@@ -101,7 +101,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="font-sans text-[0.72rem] uppercase tracking-[0.2em] text-espresso/70 hover:text-oak transition-colors"
+                  className="font-sans text-[0.8rem] uppercase tracking-[0.2em] text-espresso/80 hover:text-oak transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -111,7 +111,7 @@ export default function Navbar() {
               <Link
                 href="/order"
                 onClick={() => setMobileOpen(false)}
-                className="inline-flex items-center px-6 py-2.5 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+                className="inline-flex items-center px-6 py-2.5 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
               >
                 Order Now
               </Link>

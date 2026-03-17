@@ -84,22 +84,22 @@ function ProductRow({
         transition={{ duration: 0.8, ease, delay: 0.15 }}
         className={`${bgClass} flex flex-col justify-center px-6 py-10 md:px-[4.5rem] md:py-16`}
       >
-        <span className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-gold font-medium">
+        <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold font-medium">
           {eyebrow}
         </span>
         <h3 className="font-display text-[2.4rem] md:text-[3.8rem] text-espresso leading-[1.1] mt-1">
           {name}
         </h3>
         <div className="w-9 h-px bg-gold my-3 md:mt-3 md:mb-6" />
-        <p className="font-serif italic text-[1.05rem] text-[#6b4f30] leading-[1.85] max-w-md mb-4">
+        <p className="font-serif italic text-[1.05rem] text-[#5a4025] leading-[1.85] max-w-md mb-4">
           {description}
         </p>
-        <p className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-[#a08860] mb-9">
+        <p className="font-sans text-[0.8rem] uppercase tracking-[0.1em] text-[#8a7350] mb-9">
           {ingredients}
         </p>
         <Link
           href="/order"
-          className="group/btn inline-flex items-center gap-2 w-fit px-7 py-3 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+          className="group/btn inline-flex items-center gap-2 w-fit px-7 py-3 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
         >
           Order yours
           <span className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1">
@@ -116,7 +116,7 @@ export default function Products() {
     <section className="pt-16 pb-14 md:pt-16 md:pb-14">
       {/* Section header */}
       <div className="text-center mb-14 px-6">
-        <span className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-gold font-medium">
+        <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold font-medium">
           What We Bake
         </span>
         <h2 className="font-display text-4xl md:text-5xl text-espresso mt-2 mb-4">
