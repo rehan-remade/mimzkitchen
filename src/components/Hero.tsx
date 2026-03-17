@@ -70,7 +70,7 @@ export default function Hero() {
           {/* Eyebrow */}
           <div className="flex items-center gap-3 mb-3 md:mb-5">
             <span className="h-px w-8 bg-gold" />
-            <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold font-medium">
+            <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-amber font-medium">
               Rustic Homemade Treats
             </span>
             <span className="h-px w-8 bg-gold" />
@@ -101,16 +101,16 @@ export default function Hero() {
           </div>
 
           {/* Carousel dots */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {slides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
                 aria-label={`Go to slide ${i + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`h-3 rounded-full transition-all duration-300 ${
                   i === current
-                    ? "w-6 bg-gold"
-                    : "w-2 bg-gold/30 hover:bg-gold/50"
+                    ? "w-7 bg-gold"
+                    : "w-3 bg-gold/30 hover:bg-gold/50"
                 }`}
               />
             ))}
@@ -130,7 +130,7 @@ export default function Hero() {
           <AnimatePresence mode="sync">
             <motion.div
               key={current}
-              initial={{ opacity: 0 }}
+              initial={current === 0 ? false : { opacity: 0 }}
               animate={{ opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }}
               exit={{ opacity: 0, transition: { duration: 0.4, ease: "easeIn" } }}
               className="absolute inset-0"
@@ -140,7 +140,7 @@ export default function Hero() {
                   src={slides[current].src}
                   alt={slides[current].alt ?? slides[current].label}
                   fill
-                  quality={100}
+                  quality={85}
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 65vw"
                   priority={current === 0}
@@ -194,16 +194,16 @@ export default function Hero() {
           </button>
 
           {/* Mobile dots — below image on small screens */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 md:hidden z-20">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 md:hidden z-20">
             {slides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
                 aria-label={`Go to slide ${i + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`h-3 rounded-full transition-all duration-300 ${
                   i === current
-                    ? "w-6 bg-gold"
-                    : "w-2 bg-cream/50 hover:bg-cream/70"
+                    ? "w-7 bg-gold"
+                    : "w-3 bg-cream/50 hover:bg-cream/70"
                 }`}
               />
             ))}

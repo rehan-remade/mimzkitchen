@@ -35,7 +35,7 @@ export default function AboutPage() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold font-medium">
+          <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-amber font-medium">
             Who We Are
           </span>
           <h1 className="font-display text-5xl md:text-6xl text-espresso mt-2 mb-4">

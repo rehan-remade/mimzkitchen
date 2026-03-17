@@ -13,29 +13,20 @@ function Dot() {
   );
 }
 
-function MarqueeContent() {
-  return (
-    <>
-      {items.map((item, i) => (
-        <span key={i} className="inline-flex items-center">
-          <span className="font-serif italic text-cream text-lg md:text-xl tracking-wide">
-            {item}
-          </span>
-          <Dot />
-        </span>
-      ))}
-    </>
-  );
-}
-
 export default function Marquee() {
   return (
     <section className="bg-espresso overflow-hidden py-4">
       <div className="animate-marquee whitespace-nowrap flex">
-        <MarqueeContent />
-        <MarqueeContent />
-        <MarqueeContent />
-        <MarqueeContent />
+        {[0, 1, 2, 3].map((copy) =>
+          items.map((item, i) => (
+            <span key={`${copy}-${i}`} className="inline-flex items-center">
+              <span className="font-serif italic text-cream text-lg md:text-xl tracking-wide">
+                {item}
+              </span>
+              <Dot />
+            </span>
+          ))
+        )}
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ export default function Footer() {
             <Link href="/" className="inline-flex items-center gap-4 mb-5">
               <Image
                 src="/logo.png"
-                alt="Mimz's Kitchen"
+                alt=""
                 width={80}
                 height={80}
                 className="w-20 h-20"
@@ -40,7 +40,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-9 h-9 rounded-full border border-cream/15 flex items-center justify-center text-cream/60 hover:text-gold hover:border-gold/40 transition-colors"
+                  className="w-9 h-9 rounded-full border border-cream/15 flex items-center justify-center text-cream/80 hover:text-gold hover:border-gold/40 transition-colors"
                 >
                   <social.icon size={15} />
                 </a>
@@ -61,7 +61,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-serif text-sm text-cream/60 hover:text-cream transition-colors"
+                    className="font-serif text-sm text-cream/80 hover:text-cream transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -75,7 +75,7 @@ export default function Footer() {
             <h4 className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold mb-4">
               Contact
             </h4>
-            <div className="font-serif text-sm text-cream/60 leading-relaxed space-y-2">
+            <div className="font-serif text-sm text-cream/80 leading-relaxed space-y-2">
               <a
                 href="tel:+447404697364"
                 className="block hover:text-cream transition-colors"
@@ -97,10 +97,10 @@ export default function Footer() {
 
         {/* Divider + copyright */}
         <div className="border-t border-cream/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-sans text-[0.75rem] uppercase tracking-[0.2em] text-cream/50">
+          <p className="font-sans text-[0.75rem] uppercase tracking-[0.2em] text-cream/70">
             &copy; 2024 Mimz&apos;s Kitchen. All rights reserved.
           </p>
-          <p className="font-serif italic text-[0.75rem] text-cream/50">
+          <p className="font-serif italic text-[0.75rem] text-cream/70">
             Baked with love
           </p>
         </div>

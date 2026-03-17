@@ -84,7 +84,7 @@ function ProductRow({
         transition={{ duration: 0.8, ease, delay: 0.15 }}
         className={`${bgClass} flex flex-col justify-center px-6 py-10 md:px-[4.5rem] md:py-16`}
       >
-        <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold font-medium">
+        <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-amber font-medium">
           {eyebrow}
         </span>
         <h3 className="font-display text-[2.4rem] md:text-[3.8rem] text-espresso leading-[1.1] mt-1">
@@ -116,7 +116,7 @@ export default function Products() {
     <section className="pt-16 pb-14 md:pt-16 md:pb-14">
       {/* Section header */}
       <div className="text-center mb-14 px-6">
-        <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-gold font-medium">
+        <span className="font-sans text-[0.75rem] uppercase tracking-[0.25em] text-amber font-medium">
           What We Bake
         </span>
         <h2 className="font-display text-4xl md:text-5xl text-espresso mt-2 mb-4">

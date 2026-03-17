@@ -11,7 +11,7 @@ export default function ScrollHint() {
       style={{ opacity }}
       className="flex flex-col items-center py-6"
     >
-      <span className="font-sans text-[0.75rem] uppercase tracking-[0.3em] text-gold/70 mb-2">
+      <span className="font-sans text-[0.75rem] uppercase tracking-[0.3em] text-amber/80 mb-2">
         scroll
       </span>
       <span className="block w-px h-6 bg-gold/40 animate-scroll-pulse" />

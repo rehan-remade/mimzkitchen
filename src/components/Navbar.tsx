@@ -38,7 +38,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
           <Image
             src="/logo.png"
-            alt="Mimz's Kitchen"
+            alt=""
             width={80}
             height={80}
             className="w-14 h-14 md:w-[4.5rem] md:h-[4.5rem]"
