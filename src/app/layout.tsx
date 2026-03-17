@@ -26,10 +26,37 @@ const jost = Jost({
   display: "swap",
 });
 
+const siteUrl = "https://www.mimzskitchen.com";
+
 export const metadata: Metadata = {
   title: "Mimz's Kitchen — Artisan Bakery",
   description:
-    "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love.",
+    "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love. Based near Windsor & Slough.",
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    title: "Mimz's Kitchen — Artisan Bakery",
+    description:
+      "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love.",
+    url: siteUrl,
+    siteName: "Mimz's Kitchen",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Mimz's Kitchen — Rustic Homemade Treats",
+      },
+    ],
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mimz's Kitchen — Artisan Bakery",
+    description:
+      "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love.",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
