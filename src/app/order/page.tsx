@@ -13,7 +13,7 @@ const menuItems = [
 ];
 
 const INSTAGRAM_USERNAME = "mimzskitchen";
-const WHATSAPP_NUMBER = "447902780164";
+const WHATSAPP_NUMBER = "447404697364";
 
 type OrderType = "pickup" | "delivery";
 

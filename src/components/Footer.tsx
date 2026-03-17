@@ -77,10 +77,10 @@ export default function Footer() {
             </h4>
             <div className="font-serif text-sm text-cream/60 leading-relaxed space-y-2">
               <a
-                href="tel:+447902780164"
+                href="tel:+447404697364"
                 className="block hover:text-cream transition-colors"
               >
-                +44 7902 780164
+                +44 7404 697364
               </a>
               <a
                 href="mailto:askmimz@mimzskitchen.com"
@@ -88,7 +88,7 @@ export default function Footer() {
               >
                 askmimz@mimzskitchen.com
               </a>
-              <p className="pt-2 text-cream/45">
+              <p className="pt-3 text-cream/70 font-sans text-[0.75rem] uppercase tracking-[0.15em]">
                 Based near Windsor &amp; Slough
               </p>
             </div>
