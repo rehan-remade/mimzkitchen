@@ -96,6 +96,74 @@ export default function RootLayout({
             }),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                name: "Cinnamon Roll",
+                description:
+                  "Handmade cinnamon roll with cream cheese frosting, baked fresh to order in small batches. Made with real butter, free-range eggs, and cinnamon.",
+                image: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/riGTnP4gdCfdx4dTF8rbv_vqaBkGdk.png",
+                brand: {
+                  "@type": "Brand",
+                  name: "Mimz's Kitchen",
+                },
+                offers: {
+                  "@type": "Offer",
+                  url: `${siteUrl}/order`,
+                  priceCurrency: "GBP",
+                  price: "6.00",
+                  availability: "https://schema.org/PreOrder",
+                  seller: {
+                    "@type": "Organization",
+                    name: "Mimz's Kitchen",
+                  },
+                },
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                name: "Basque Cheesecake Slice",
+                description:
+                  "A rustic indulgent Basque cheesecake with a deeply caramelised top and impossibly creamy centre. Inspired by Northern Spain, baked fresh to order.",
+                image: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/ggLQR5whirgCeVyK3Fd8z_3wt1ympl.png",
+                brand: {
+                  "@type": "Brand",
+                  name: "Mimz's Kitchen",
+                },
+                offers: {
+                  "@type": "Offer",
+                  url: `${siteUrl}/order`,
+                  priceCurrency: "GBP",
+                  price: "7.00",
+                  availability: "https://schema.org/PreOrder",
+                },
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                name: "Whole Basque Cheesecake",
+                description:
+                  "A whole Basque cheesecake serving 8 to 10 people. Deeply caramelised top with a creamy custard-like centre. Baked fresh to order.",
+                image: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/ggLQR5whirgCeVyK3Fd8z_3wt1ympl.png",
+                brand: {
+                  "@type": "Brand",
+                  name: "Mimz's Kitchen",
+                },
+                offers: {
+                  "@type": "Offer",
+                  url: `${siteUrl}/order`,
+                  priceCurrency: "GBP",
+                  price: "50.00",
+                  availability: "https://schema.org/PreOrder",
+                },
+              },
+            ]),
+          }}
+        />
         <Navbar />
         <main className="overflow-x-clip">{children}</main>
         <Footer />
