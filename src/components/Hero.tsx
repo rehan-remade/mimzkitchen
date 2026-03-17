@@ -94,7 +94,7 @@ export default function Hero() {
           <div className="flex flex-wrap gap-3 mb-5 md:mb-8">
             <Link
               href="/order"
-              className="px-7 py-2.5 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+              className="px-7 py-2.5 bg-espresso text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-oak transition-colors rounded-sm"
             >
               Order Today
             </Link>

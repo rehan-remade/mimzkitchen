@@ -213,7 +213,7 @@ export default function OrderPage() {
                     onClick={() => setOrderType(type)}
                     className={`py-3 font-sans text-[0.8rem] uppercase tracking-[0.15em] transition-colors ${
                       orderType === type
-                        ? "bg-oak text-cream"
+                        ? "bg-espresso text-cream"
                         : "bg-parchment-dark/50 text-espresso/75 hover:bg-parchment-dark"
                     }`}
                   >
@@ -301,32 +301,32 @@ export default function OrderPage() {
           <button
             onClick={handleWhatsApp}
             disabled={!isValid}
-            className="w-full py-4 bg-[#25D366] text-white text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-[#1fb855] transition-colors rounded-sm disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+            className="w-full py-4 bg-[#25D366] text-white text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-[#1fb855] transition-colors rounded-sm disabled:opacity-40 disabled:cursor-not-allowed grid grid-cols-[1.25rem_1fr] items-center gap-3 px-[calc(50%-7.5rem)]"
           >
-            <FaWhatsapp size={18} />
-            Order via WhatsApp
+            <FaWhatsapp className="w-5 h-5" />
+            <span className="text-left">Order via WhatsApp</span>
           </button>
 
           <a
             href={isValid ? buildEmailHref() : undefined}
             target="_blank"
             rel="noopener noreferrer"
-            className={`w-full py-4 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm flex items-center justify-center gap-3 ${
+            className={`w-full py-4 bg-espresso text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-oak transition-colors rounded-sm grid grid-cols-[1.25rem_1fr] items-center gap-3 px-[calc(50%-7.5rem)] ${
               !isValid ? "opacity-40 pointer-events-none" : ""
             }`}
             aria-disabled={!isValid}
           >
-            <FaEnvelope size={16} />
-            Order via Email
+            <FaEnvelope className="w-5 h-5" />
+            <span className="text-left">Order via Email</span>
           </a>
 
           <button
             onClick={handleInstagram}
             disabled={!isValid}
-            className="w-full py-4 bg-gradient-to-r from-[#833AB4] via-[#C13584] to-[#F56040] text-white text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:opacity-90 transition-opacity rounded-sm disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+            className="w-full py-4 bg-gradient-to-r from-[#833AB4] via-[#C13584] to-[#F56040] text-white text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:opacity-90 transition-opacity rounded-sm disabled:opacity-40 disabled:cursor-not-allowed grid grid-cols-[1.25rem_1fr] items-center gap-3 px-[calc(50%-7.5rem)]"
           >
-            <FaInstagram size={18} />
-            Order via Instagram
+            <FaInstagram className="w-5 h-5" />
+            <span className="text-left">Order via Instagram</span>
           </button>
         </div>
 

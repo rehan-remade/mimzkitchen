@@ -107,7 +107,7 @@ export default function AboutPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/order"
-              className="px-8 py-3 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+              className="px-8 py-3 bg-espresso text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-oak transition-colors rounded-sm"
             >
               Order Now
             </Link>

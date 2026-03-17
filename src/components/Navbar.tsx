@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const links = [
+  { label: "Home", href: "/" },
   { label: "Our Story", href: "/about" },
   { label: "Order", href: "/order" },
   { label: "Find Us", href: "/#find-us" },
@@ -65,7 +66,7 @@ export default function Navbar() {
         {/* CTA */}
         <Link
           href="/order"
-          className="hidden md:inline-flex items-center px-6 py-2.5 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+          className="hidden md:inline-flex items-center px-6 py-2.5 bg-espresso text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-oak transition-colors rounded-sm"
         >
           Order Now
         </Link>
@@ -111,7 +112,7 @@ export default function Navbar() {
               <Link
                 href="/order"
                 onClick={() => setMobileOpen(false)}
-                className="inline-flex items-center px-6 py-2.5 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+                className="inline-flex items-center px-6 py-2.5 bg-espresso text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-oak transition-colors rounded-sm"
               >
                 Order Now
               </Link>

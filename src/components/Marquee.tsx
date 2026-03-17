@@ -3,7 +3,7 @@ export default function Marquee() {
     "Cinnamon Rolls \u2726 Basque Cheesecake \u2726 Baked Fresh Daily \u2726 Small Batch \u2726 Rustic Homemade Treats \u2726 Made with Love \u2726 ";
 
   return (
-    <section className="bg-oak overflow-hidden py-4">
+    <section className="bg-espresso overflow-hidden py-4">
       <div className="animate-marquee whitespace-nowrap flex">
         {[...Array(4)].map((_, i) => (
           <span

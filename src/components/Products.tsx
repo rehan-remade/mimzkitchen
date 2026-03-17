@@ -99,7 +99,7 @@ function ProductRow({
         </p>
         <Link
           href="/order"
-          className="group/btn inline-flex items-center gap-2 w-fit px-7 py-3 bg-oak text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
+          className="group/btn inline-flex items-center gap-2 w-fit px-7 py-3 bg-espresso text-cream text-[0.8rem] uppercase tracking-[0.2em] font-sans hover:bg-oak transition-colors rounded-sm"
         >
           Order yours
           <span className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1">
