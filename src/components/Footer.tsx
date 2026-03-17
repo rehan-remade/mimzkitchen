@@ -88,6 +88,9 @@ export default function Footer() {
               >
                 askmimz@mimzskitchen.com
               </a>
+              <p className="pt-2 text-cream/45">
+                Based near Windsor &amp; Slough
+              </p>
             </div>
           </div>
         </div>
