@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import LeafDivider from "@/components/LeafDivider";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -24,7 +25,7 @@ const values = [
   {
     title: "Made by Hand",
     description:
-      "Every bun is rolled, every cheesecake is poured by hand. There are no assembly lines here.",
+      "Every roll is shaped, every cheesecake is poured by hand. There are no assembly lines here.",
   },
 ];
 
@@ -40,24 +41,14 @@ export default function AboutPage() {
           <h1 className="font-display text-5xl md:text-6xl text-espresso mt-2 mb-4">
             Our Story
           </h1>
-          <div className="flex items-center justify-center gap-3">
-            <span className="h-px w-12 bg-gold/40" />
-            <svg
-              viewBox="0 0 20 20"
-              className="w-4 h-4 text-gold"
-              fill="currentColor"
-            >
-              <path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.7l-4.9 2.5.9-5.5-4-3.9 5.5-.8z" />
-            </svg>
-            <span className="h-px w-12 bg-gold/40" />
-          </div>
+          <LeafDivider />
         </div>
 
         {/* Story */}
         <motion.div {...fadeUp(0.1)} className="max-w-2xl mx-auto mb-20">
           <p className="font-serif text-lg text-espresso/70 leading-relaxed mb-6">
             Mimz&apos;s Kitchen started with a simple craving: a perfect
-            cinnamon bun. Not the mass-produced kind you find at the mall, but
+            cinnamon roll. Not the mass-produced kind you find at the mall, but
             the soft, fragrant, pull-apart kind that fills an entire kitchen with
             warmth.
           </p>
@@ -114,12 +105,6 @@ export default function AboutPage() {
             Come taste the difference.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/menu"
-              className="px-8 py-3 border border-gold text-oak text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-gold/10 transition-colors rounded-sm"
-            >
-              View Menu
-            </Link>
             <Link
               href="/order"
               className="px-8 py-3 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"

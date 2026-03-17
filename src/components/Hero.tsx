@@ -20,7 +20,7 @@ const slides: Slide[] = [
     label: "Fresh Out of the Oven",
     ratio: "4:3",
     src: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/Re4NFP7Rn-Z-amr0fbTsb_kIhH10CR.png",
-    alt: "Overhead shot of six golden cinnamon buns in a seasoned baking tin with steam rising",
+    alt: "Overhead shot of six golden cinnamon rolls in a seasoned baking tin with steam rising",
   },
   {
     shotId: "02",
@@ -34,7 +34,7 @@ const slides: Slide[] = [
     label: "The morning spread",
     ratio: "4:3",
     src: "https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/wyMjoDbkrJZ1lZ0WJBflM_S4SvHLTH.png",
-    alt: "Overhead flatlay of cinnamon buns and Basque cheesecake on parchment paper with coffee and wildflowers in morning light",
+    alt: "Overhead flatlay of cinnamon rolls and Basque cheesecake on parchment paper with coffee and wildflowers in morning light",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function Hero() {
 
           {/* H1 */}
           <h1 className="font-display text-[2.4rem] md:text-[4.2rem] text-espresso leading-[1.1] mb-3 md:mb-4">
-            Baked with love &amp; time
+            Baked with love &amp; passion
           </h1>
 
           {/* Gold divider */}
@@ -86,7 +86,7 @@ export default function Hero() {
 
           {/* Subtext */}
           <p className="font-serif italic text-[0.95rem] md:text-[1rem] text-espresso/55 max-w-[340px] mb-5 md:mb-7 leading-relaxed">
-            Small-batch cinnamon buns and Basque cheesecake, made from scratch
+            Small-batch cinnamon rolls and Basque cheesecake, made from scratch
             each morning.
           </p>
 
@@ -97,12 +97,6 @@ export default function Hero() {
               className="px-7 py-2.5 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
             >
               Order Today
-            </Link>
-            <Link
-              href="/menu"
-              className="px-7 py-2.5 border border-gold text-oak text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-gold/10 transition-colors rounded-sm"
-            >
-              Our Menu
             </Link>
           </div>
 

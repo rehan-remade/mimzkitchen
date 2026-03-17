@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 
 const links = [
   { label: "Our Story", href: "/about" },
-  { label: "Menu", href: "/menu" },
   { label: "Order", href: "/order" },
   { label: "Find Us", href: "/#find-us" },
 ];
@@ -44,7 +43,7 @@ export default function Navbar() {
             className="w-14 h-14 md:w-[4.5rem] md:h-[4.5rem]"
             priority
           />
-          <span className="font-display text-2xl md:text-3xl text-oak">
+          <span className="font-display text-3xl md:text-[2.6rem] text-oak">
             Mimz&apos;s Kitchen
           </span>
         </Link>

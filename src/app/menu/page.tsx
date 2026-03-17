@@ -2,28 +2,29 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import LeafDivider from "@/components/LeafDivider";
 
 const categories = [
   {
-    title: "Cinnamon Buns",
+    title: "Cinnamon Rolls",
     items: [
       {
-        name: "Classic Cinnamon Bun",
+        name: "Classic Cinnamon Roll",
         description: "Ceylon cinnamon swirl with cream cheese glaze",
         price: "$4.50",
       },
       {
-        name: "Pecan Caramel Bun",
+        name: "Pecan Caramel Roll",
         description: "Topped with toasted pecans and salted caramel",
         price: "$5.50",
       },
       {
-        name: "Apple Cinnamon Bun",
+        name: "Apple Cinnamon Roll",
         description: "Spiced apple compote layered through soft dough",
         price: "$5.00",
       },
       {
-        name: "Mini Bun Box (6)",
+        name: "Mini Roll Box (6)",
         description: "Half-dozen bite-sized classic buns, perfect for sharing",
         price: "$14.00",
       },
@@ -94,17 +95,7 @@ export default function MenuPage() {
           <h1 className="font-display text-5xl md:text-6xl text-espresso mt-2 mb-4">
             Our Menu
           </h1>
-          <div className="flex items-center justify-center gap-3">
-            <span className="h-px w-12 bg-gold/40" />
-            <svg
-              viewBox="0 0 20 20"
-              className="w-4 h-4 text-gold"
-              fill="currentColor"
-            >
-              <path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.7l-4.9 2.5.9-5.5-4-3.9 5.5-.8z" />
-            </svg>
-            <span className="h-px w-12 bg-gold/40" />
-          </div>
+          <LeafDivider />
           <p className="font-serif italic text-espresso/50 mt-4 max-w-md mx-auto">
             Everything is made fresh each morning. Availability may vary &mdash;
             we bake until it&apos;s gone.

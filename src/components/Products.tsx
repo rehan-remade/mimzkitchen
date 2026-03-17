@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import MediaSlot from "./MediaSlot";
+import LeafDivider from "./LeafDivider";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -13,7 +14,6 @@ function ProductRow({
   name,
   description,
   ingredients,
-  price,
   shotId,
   shotLabel,
   imageSrc,
@@ -26,7 +26,6 @@ function ProductRow({
   name: string;
   description: string;
   ingredients: string;
-  price: string;
   shotId: string;
   shotLabel: string;
   imageSrc?: string;
@@ -98,7 +97,6 @@ function ProductRow({
         <p className="font-sans text-[0.72rem] uppercase tracking-[0.1em] text-[#a08860] mb-9">
           {ingredients}
         </p>
-        <span className="font-serif text-[1rem] text-gold mb-5">{price}</span>
         <Link
           href="/order"
           className="group/btn inline-flex items-center gap-2 w-fit px-7 py-3 bg-oak text-cream text-[0.72rem] uppercase tracking-[0.2em] font-sans hover:bg-espresso transition-colors rounded-sm"
@@ -124,30 +122,19 @@ export default function Products() {
         <h2 className="font-display text-4xl md:text-5xl text-espresso mt-2 mb-4">
           Our Specialities
         </h2>
-        <div className="flex items-center justify-center gap-3">
-          <span className="h-px w-12 bg-gold/40" />
-          <svg
-            viewBox="0 0 20 20"
-            className="w-4 h-4 text-gold"
-            fill="currentColor"
-          >
-            <path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.7l-4.9 2.5.9-5.5-4-3.9 5.5-.8z" />
-          </svg>
-          <span className="h-px w-12 bg-gold/40" />
-        </div>
+        <LeafDivider />
       </div>
 
-      {/* Row 1 — Cinnamon Buns (image left, text right) */}
+      {/* Row 1 — Cinnamon Rolls (image left, text right) */}
       <ProductRow
         eyebrow="Our signature"
-        name="Cinnamon Buns"
+        name="Cinnamon Rolls"
         description="Soft, swirled dough laced with Ceylon cinnamon and topped with a silky cream cheese glaze. Baked golden each morning."
         ingredients="Ceylon cinnamon · Brown butter · Cream cheese glaze"
-        price="From £3.50"
         shotId="01"
         shotLabel="The golden pull"
-        imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/cC5tvFDAhiJTuIm3Aa6N4_EWm6XC5X.png"
-        imageAlt="Close-up of a glazed cinnamon bun with soft pillowy interior exposed on a ceramic plate"
+        imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/riGTnP4gdCfdx4dTF8rbv_vqaBkGdk.png"
+        imageAlt="Close-up of a glazed cinnamon roll with soft pillowy interior exposed on a ceramic plate"
         imageQuality={75}
         bgClass="bg-parchment"
       />
@@ -161,7 +148,6 @@ export default function Products() {
         name="Basque Cheesecake"
         description="Caramelised and crackled on top, impossibly creamy within. A rustic, flourless recipe inspired by San Sebastián."
         ingredients="Full-fat cream cheese · Vanilla · Crème fraîche"
-        price="From £5.50 · Whole from £32"
         shotId="02"
         shotLabel="The whole cheesecake"
         imageSrc="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/ggLQR5whirgCeVyK3Fd8z_3wt1ympl.png"

@@ -2,15 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import LeafDivider from "@/components/LeafDivider";
 
 const menuItems = [
-  { id: "classic-bun", name: "Classic Cinnamon Bun", price: 4.5 },
-  { id: "pecan-bun", name: "Pecan Caramel Bun", price: 5.5 },
-  { id: "apple-bun", name: "Apple Cinnamon Bun", price: 5.0 },
-  { id: "mini-box", name: "Mini Bun Box (6)", price: 14.0 },
-  { id: "classic-cheesecake", name: "Basque Cheesecake (slice)", price: 7.0 },
-  { id: "whole-cheesecake", name: "Whole Basque Cheesecake (8\")", price: 48.0 },
-  { id: "matcha-cheesecake", name: "Matcha Cheesecake (slice)", price: 8.0 },
+  { id: "cinnamon-roll", name: "Cinnamon Roll", price: 4.5 },
+  { id: "basque-cheesecake", name: "Basque Cheesecake", price: 7.0 },
 ];
 
 export default function OrderPage() {
@@ -84,17 +80,7 @@ export default function OrderPage() {
           <h1 className="font-display text-5xl md:text-6xl text-espresso mt-2 mb-4">
             Place an Order
           </h1>
-          <div className="flex items-center justify-center gap-3">
-            <span className="h-px w-12 bg-gold/40" />
-            <svg
-              viewBox="0 0 20 20"
-              className="w-4 h-4 text-gold"
-              fill="currentColor"
-            >
-              <path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 14.7l-4.9 2.5.9-5.5-4-3.9 5.5-.8z" />
-            </svg>
-            <span className="h-px w-12 bg-gold/40" />
-          </div>
+          <LeafDivider />
           <p className="font-serif italic text-espresso/50 mt-4 max-w-md mx-auto">
             Select your items, choose a pickup time, and we&apos;ll have
             everything ready for you.

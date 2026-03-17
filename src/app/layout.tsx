@@ -29,7 +29,7 @@ const jost = Jost({
 export const metadata: Metadata = {
   title: "Mimz's Kitchen — Artisan Bakery",
   description:
-    "Small-batch cinnamon buns and Basque cheesecakes, baked fresh daily with love.",
+    "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love.",
 };
 
 export default function RootLayout({

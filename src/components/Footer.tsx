@@ -28,7 +28,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="font-serif italic text-cream/50 text-sm leading-relaxed max-w-xs mb-6">
-              Small-batch cinnamon buns and Basque cheesecakes, baked fresh daily
+              Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily
               with love.
             </p>
             {/* Social icons */}
@@ -56,7 +56,6 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { label: "Our Story", href: "/about" },
-                { label: "Menu", href: "/menu" },
                 { label: "Order", href: "/order" },
               ].map((link) => (
                 <li key={link.href}>
