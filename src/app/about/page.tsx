@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import LeafDivider from "@/components/LeafDivider";
@@ -44,8 +45,22 @@ export default function AboutPage() {
           <LeafDivider />
         </div>
 
+        {/* Portrait */}
+        <motion.div {...fadeUp(0.1)} className="max-w-sm mx-auto mb-14">
+          <div className="relative aspect-[9/16] rounded-sm overflow-hidden">
+            <Image
+              src="https://2tphzoqtq9aupm3q.public.blob.vercel-storage.com/images/qDha8WKhQb5a7SSmlNI6n_pWjJWCT6.png"
+              alt="Mimz — founder of Mimz's Kitchen"
+              fill
+              quality={85}
+              className="object-cover"
+              sizes="(max-width: 768px) 90vw, 384px"
+            />
+          </div>
+        </motion.div>
+
         {/* Story */}
-        <motion.div {...fadeUp(0.1)} className="max-w-2xl mx-auto mb-20">
+        <motion.div {...fadeUp(0.2)} className="max-w-2xl mx-auto mb-20">
           <p className="font-serif text-lg text-espresso/80 leading-relaxed mb-6">
             Mimz&apos;s Kitchen started with a simple craving: a perfect
             cinnamon roll. Not the mass-produced kind you find at the shopping centre, but
@@ -70,7 +85,7 @@ export default function AboutPage() {
         </motion.div>
 
         {/* Values */}
-        <motion.div {...fadeUp(0.2)}>
+        <motion.div {...fadeUp(0.3)}>
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl text-espresso mb-2">
               What We Believe
