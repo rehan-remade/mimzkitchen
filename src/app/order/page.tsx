@@ -9,11 +9,13 @@ import AddressLookup from "@/components/AddressLookup";
 const menuItems = [
   { id: "cinnamon-roll", name: "Cinnamon Roll", desc: "Per roll", price: 6 },
   { id: "cheesecake-slice", name: "Basque Cheesecake", desc: "Single slice", price: 7 },
-  { id: "cheesecake-whole", name: "Whole Basque Cheesecake", desc: "Serves 8\u201310", price: 50 },
-  { id: "sauce-butterscotch", name: "Salted Butterscotch Sauce", desc: "Sauce pot, sold separately", price: 0 },
-  { id: "sauce-chocolate", name: "Chocolate Ganache Sauce", desc: "Sauce pot, sold separately", price: 0 },
-  { id: "sauce-raspberry", name: "Raspberry Coulis", desc: "Sauce pot, sold separately", price: 0 },
+  { id: "slice-drizzle", name: "Sauce Drizzle on Slice", desc: "Thick drizzle on your slice", price: 1.5 },
+  { id: "cheesecake-whole", name: "Whole Basque Cheesecake (9\")", desc: "Serves 8\u201310", price: 50 },
+  { id: "sauce-butterscotch", name: "Salted Butterscotch Sauce", desc: "Large pot for whole cheesecake", price: 5.5 },
+  { id: "sauce-chocolate", name: "Chocolate Ganache Sauce", desc: "Large pot for whole cheesecake", price: 5.5 },
+  { id: "sauce-raspberry", name: "Raspberry Coulis", desc: "Large pot for whole cheesecake", price: 5.5 },
 ];
+
 
 const INSTAGRAM_USERNAME = "mimzskitchen";
 const WHATSAPP_NUMBER = "447404697364";
@@ -51,8 +53,8 @@ export default function OrderPage() {
       .map((item) => `  - ${quantities[item.id]}x ${item.name}`)
       .join("\n");
 
-    let msg = `Hi Mimz's Kitchen!\n\n`;
-    msg += `I'd like to place an order for ${orderType}:\n\n`;
+    let msg = `Hi Mimz!\n\n`;
+    msg += `I'd love to place an order for ${orderType}:\n\n`;
     msg += `${items}\n\n`;
     msg += `Name: ${name}\n`;
     const prefStr = [prefDate, prefTime].filter(Boolean).join(" at ");
@@ -127,7 +129,7 @@ export default function OrderPage() {
         {/* Items */}
         <div className="mb-12">
           <h2 className="font-display text-2xl text-espresso mb-2">
-            Select Items
+            Select Your Treats
           </h2>
           <div className="w-8 h-px bg-gold mb-6" />
 

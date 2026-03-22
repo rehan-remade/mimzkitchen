@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Great_Vibes, Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -30,7 +31,7 @@ const jost = Jost({
 const siteUrl = "https://www.mimzskitchen.com";
 
 const siteDescription =
-  "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily with love. Based near Windsor & Slough.";
+  "Small-batch cinnamon rolls and Basque cheesecakes, baked fresh with love. Based near Windsor & Slough.";
 
 export const metadata: Metadata = {
   title: "Mimz's Kitchen — Artisan Bakery",
@@ -168,6 +169,7 @@ export default function RootLayout({
         <main className="overflow-x-clip">{children}</main>
         <Footer />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

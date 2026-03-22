@@ -87,7 +87,7 @@ export default function Hero() {
           {/* Subtext */}
           <p className="font-serif italic text-[0.95rem] md:text-[1rem] text-espresso/70 max-w-[340px] mb-5 md:mb-7 leading-relaxed">
             Small-batch cinnamon rolls and Basque cheesecake, made from scratch
-            each morning.
+            with love.
           </p>
 
           {/* CTA row */}

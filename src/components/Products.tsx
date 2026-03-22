@@ -129,7 +129,7 @@ export default function Products() {
       <ProductRow
         eyebrow="Our signature"
         name="Cinnamon Rolls"
-        description="Soft, swirled dough laced with cinnamon and topped with a silky cream cheese frosting. Baked golden each morning."
+        description="Soft, swirled dough laced with cinnamon and topped with a silky cream cheese frosting. Baked golden and fresh to order."
         ingredients="Cinnamon · Brown butter · Cream cheese frosting"
         shotId="01"
         shotLabel="The golden pull"

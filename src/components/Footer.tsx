@@ -17,18 +17,18 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-flex items-center gap-4 mb-5">
               <Image
-                src="/logo.png"
+                src="/outline-logo.png"
                 alt=""
                 width={80}
                 height={80}
-                className="w-20 h-20"
+                className="w-24 h-24"
               />
               <span className="font-display text-3xl text-cream">
                 Mimz&apos;s Kitchen
               </span>
             </Link>
             <p className="font-serif italic text-cream/65 text-sm leading-relaxed max-w-xs mb-6">
-              Small-batch cinnamon rolls and Basque cheesecakes, baked fresh daily
+              Small-batch cinnamon rolls and Basque cheesecakes, baked fresh
               with love.
             </p>
             {/* Social icons */}
